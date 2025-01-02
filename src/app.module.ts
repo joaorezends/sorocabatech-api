@@ -4,6 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { IndexController } from './controllers/index.controller';
 import { Link } from './business/link/domain/Link';
 import { LinkModule } from './business/link/LinkModule';
+import { SocialModule } from './business/social/SocialModule';
+import { Social } from './business/social/domain/Social';
 
 @Module({
   imports: [
@@ -17,11 +19,12 @@ import { LinkModule } from './business/link/LinkModule';
         username: configService.get('TYPEORM_USERNAME'),
         password: configService.get('TYPEORM_PASSWORD'),
         database: configService.get('TYPEORM_DATABASE'),
-        entities: [Link],
+        entities: [Link, Social],
       }),
       inject: [ConfigService],
     }),
     LinkModule,
+    SocialModule,
   ],
   controllers: [IndexController],
 })

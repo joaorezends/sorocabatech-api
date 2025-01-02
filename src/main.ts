@@ -20,6 +20,12 @@ async function bootstrap() {
       handlebars: require('handlebars'),
     },
     templates: join(__dirname, '..', 'views'),
+    options: {
+      partials: {
+        whatsAppIcon: join('..', 'components', 'icons', 'whatsapp.hbs'),
+        instagramIcon: join('..', 'components', 'icons', 'instagram.hbs'),
+      },
+    },
   });
   await app.listen(process.env.PORT ?? 3000);
 }
