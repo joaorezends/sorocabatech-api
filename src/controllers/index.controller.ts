@@ -6,7 +6,7 @@ export class IndexController {
   constructor(private readonly linkService: LinkService) {}
 
   @Get()
-  @Render('index.hbs')
+  @Render('index')
   async root() {
     const links = await this.linkService.findAll();
     return { links };
