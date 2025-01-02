@@ -6,6 +6,8 @@
     <title>sorocaba.tech</title>
 </head>
 <body>
-    <p>{{ message }}</p>
+    {{#each links}}
+        <p>{{this.name}}</p>
+    {{/each}}
 </body>
 </html>
