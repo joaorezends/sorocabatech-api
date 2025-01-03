@@ -13,13 +13,14 @@ import { Social } from './business/social/domain/Social';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
-        type: 'mysql',
+        type: 'postgres',
         host: configService.get('TYPEORM_HOST'),
         port: +configService.get('TYPEORM_PORT'),
         username: configService.get('TYPEORM_USERNAME'),
         password: configService.get('TYPEORM_PASSWORD'),
         database: configService.get('TYPEORM_DATABASE'),
         entities: [Link, Social],
+        ssl: true,
       }),
       inject: [ConfigService],
     }),
