@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { IndexController } from './controllers/index.controller';
-import { Link } from './business/link/domain/Link';
-import { LinkModule } from './business/link/LinkModule';
-import { SocialModule } from './business/social/SocialModule';
-import { Social } from './business/social/domain/Social';
+import { Link } from './link/domain/Link';
+import { LinkModule } from './link/LinkModule';
+import { SocialModule } from './social/SocialModule';
+import { Social } from './social/domain/Social';
 
 @Module({
   imports: [
@@ -27,6 +26,5 @@ import { Social } from './business/social/domain/Social';
     LinkModule,
     SocialModule,
   ],
-  controllers: [IndexController],
 })
 export class AppModule {}
