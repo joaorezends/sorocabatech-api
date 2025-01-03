@@ -19,7 +19,9 @@ import { Social } from './social/domain/Social';
         password: configService.get('TYPEORM_PASSWORD'),
         database: configService.get('TYPEORM_DATABASE'),
         entities: [Link, Social],
-        ssl: true,
+        ssl: {
+          rejectUnauthorized: false,
+        },
       }),
       inject: [ConfigService],
     }),
