@@ -1,0 +1,1 @@
+CREATE TYPE CUSTOMERTYPE AS ENUM ('natural', 'legal');

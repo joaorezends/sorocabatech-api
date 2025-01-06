@@ -1,7 +1,9 @@
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Link } from '../domain/Link';
 
+@Injectable()
 export class LinkService {
   constructor(
     @InjectRepository(Link)
