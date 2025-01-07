@@ -1,8 +1,17 @@
-import { Body, Controller, Post, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Req,
+  Res,
+  UseGuards,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { FastifyReply } from 'fastify';
+import { FastifyReply, FastifyRequest } from 'fastify';
 import { AuthService } from '../application/AuthService';
 import { Credentials } from '../domain/Credentials';
+import { AuthGuard } from '../AuthGuard';
 
 @Controller()
 export class AuthController {
@@ -10,6 +19,12 @@ export class AuthController {
     private readonly configService: ConfigService,
     private readonly authService: AuthService,
   ) {}
+
+  @UseGuards(AuthGuard)
+  @Get('/users/auth/session')
+  async session(@Req() request: FastifyRequest) {
+    return request['user'];
+  }
 
   @Post('/users/auth/login')
   async login(
