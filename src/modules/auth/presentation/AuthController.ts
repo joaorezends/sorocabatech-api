@@ -18,14 +18,17 @@ export class AuthController {
   ): Promise<void> {
     const token = await this.authService.signIn(credentials);
     response.setCookie('token', token, {
-      expires: new Date(Date.now() + +this.configService.get('JWT_EXPIRES_IN')),
+      signed: true,
+      expires: new Date(
+        Date.now() + +this.configService.get<string>('JWT_EXPIRES_IN'),
+      ),
       domain:
-        this.configService.get('NODE_ENV') === 'production'
+        this.configService.get<string>('NODE_ENV') === 'production'
           ? '.sorocabatech.com.br'
           : 'localhost',
       path: '/',
       httpOnly: true,
-      secure: this.configService.get('NODE_ENV') === 'production',
+      secure: this.configService.get<string>('NODE_ENV') === 'production',
     });
   }
 }

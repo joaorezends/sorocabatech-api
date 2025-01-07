@@ -16,14 +16,13 @@ import { AuthModule } from './auth/AuthModule';
       cache: true,
     }),
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
-        host: configService.get('TYPEORM_HOST'),
-        port: +configService.get('TYPEORM_PORT'),
-        username: configService.get('TYPEORM_USERNAME'),
-        password: configService.get('TYPEORM_PASSWORD'),
-        database: configService.get('TYPEORM_DATABASE'),
+        host: configService.get<string>('TYPEORM_HOST'),
+        port: +configService.get<string>('TYPEORM_PORT'),
+        username: configService.get<string>('TYPEORM_USERNAME'),
+        password: configService.get<string>('TYPEORM_PASSWORD'),
+        database: configService.get<string>('TYPEORM_DATABASE'),
         entities: [Customer, Link, Social],
         ssl: {
           rejectUnauthorized: false,
