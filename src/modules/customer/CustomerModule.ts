@@ -3,11 +3,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CustomerService } from './application/CustomerService';
 import { Customer } from './domain/Customer';
 import { CustomerController } from './presentation/CustomerController';
+import { AuthController } from './presentation/AuthController';
+import { AuthService } from './application/AuthService';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Customer])],
-  controllers: [CustomerController],
-  providers: [CustomerService],
-  exports: [CustomerService],
+  controllers: [AuthController, CustomerController],
+  providers: [AuthService, CustomerService],
 })
 export class CustomerModule {}

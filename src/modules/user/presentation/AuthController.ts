@@ -11,13 +11,13 @@ export class AuthController {
     private readonly authService: AuthService,
   ) {}
 
-  @Post('/auth/sign-in')
-  async signIn(
+  @Post('/users/auth/login')
+  async login(
     @Body() credentials: Credentials,
     @Res({ passthrough: true }) response: FastifyReply,
   ): Promise<void> {
-    const token = await this.authService.signIn(credentials);
-    response.setCookie('token', token, {
+    const token = await this.authService.login(credentials);
+    response.setCookie('UTOKEN', token, {
       signed: true,
       expires: new Date(
         Date.now() + +this.configService.get<string>('JWT_EXPIRES_IN'),

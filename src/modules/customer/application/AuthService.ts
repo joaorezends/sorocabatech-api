@@ -1,7 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Credentials } from '../domain/Credentials';
-import { CustomerService } from 'src/modules/customer/application/CustomerService';
+import { CustomerService } from './CustomerService';
 
 @Injectable()
 export class AuthService {
@@ -10,7 +10,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async signIn({ email, password }: Credentials): Promise<string> {
+  async login({ email, password }: Credentials): Promise<string> {
     const customer = await this.customerService
       .findOne({ where: { email } })
       .catch(() => null);
