@@ -10,6 +10,8 @@ import { SocialModule } from './social/SocialModule';
 import { Social } from './social/domain/Social';
 import { UserModule } from './user/UserModule';
 import { User } from './user/domain/User';
+import { CatalogModule } from './catalog/CatalogModule';
+import { Category } from './catalog/category/domain/Category';
 
 @Module({
   imports: [
@@ -25,7 +27,7 @@ import { User } from './user/domain/User';
         username: configService.get<string>('TYPEORM_USERNAME'),
         password: configService.get<string>('TYPEORM_PASSWORD'),
         database: configService.get<string>('TYPEORM_DATABASE'),
-        entities: [Customer, Link, Social, User],
+        entities: [Category, Customer, Link, Social, User],
         ssl: {
           rejectUnauthorized: false,
         },
@@ -42,6 +44,7 @@ import { User } from './user/domain/User';
       }),
       inject: [ConfigService],
     }),
+    CatalogModule,
     CustomerModule,
     LinkModule,
     SocialModule,
