@@ -17,15 +17,15 @@ export class Category {
   @Column()
   featured: boolean;
 
-  @Column()
-  seo_title: string | null;
+  @Column({ name: 'seo_title' })
+  seoTitle: string | null;
 
-  @Column()
-  seo_description: string | null;
+  @Column({ name: 'seo_description' })
+  seoDescription: string | null;
 
-  @Column()
-  seo_url: string | null;
+  @Column({ name: 'seo_url' })
+  seoUrl: string | null;
 
-  @Column()
-  category_id: string | null;
+  @Column({ name: 'category_id' })
+  categoryId: string | null;
 }
