@@ -16,11 +16,7 @@ export class CustomerService {
 
   async findOne({ where }: { where: Partial<Customer> }): Promise<Customer> {
     const customer = await this.customerRepository.findOneBy(where);
-
-    if (!customer) {
-      throw new NotFoundException('Customer not found.');
-    }
-
+    if (!customer) throw new NotFoundException('Customer not found.');
     return customer;
   }
 }

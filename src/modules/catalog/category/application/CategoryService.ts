@@ -16,11 +16,12 @@ export class CategoryService {
 
   async findOne({ where }: { where: Partial<Category> }): Promise<Category> {
     const category = await this.categoryRepository.findOneBy(where);
-
-    if (!category) {
-      throw new NotFoundException('Category not found.');
-    }
-
+    if (!category) throw new NotFoundException('Category not found.');
     return category;
+  }
+
+  async create(data: Partial<Category>): Promise<number> {
+    const result = await this.categoryRepository.insert(data);
+    return result.identifiers[0]?.id;
   }
 }

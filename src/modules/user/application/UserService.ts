@@ -16,11 +16,7 @@ export class UserService {
 
   async findOne({ where }: { where: Partial<User> }): Promise<User> {
     const user = await this.userRepository.findOneBy(where);
-
-    if (!user) {
-      throw new NotFoundException('User not found.');
-    }
-
+    if (!user) throw new NotFoundException('User not found.');
     return user;
   }
 }
