@@ -5,8 +5,8 @@ export class Category {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  active: boolean;
+  @Column({ name: 'is_active' })
+  isActive: boolean;
 
   @Column()
   name: string;
@@ -14,8 +14,8 @@ export class Category {
   @Column()
   description: string | null;
 
-  @Column()
-  featured: boolean;
+  @Column({ name: 'is_featured' })
+  isFeatured: boolean;
 
   @Column({ name: 'seo_title' })
   seoTitle: string | null;
